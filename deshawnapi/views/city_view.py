@@ -9,6 +9,7 @@ from deshawnapi.models import City
 class CityView(ViewSet):
 
     def retrieve(self, request, pk=None):
+        """ GET Single City """
         # Step 1: Get a single city based on the primary key in the request URL
         city = City.objects.get(pk=pk)
 
@@ -19,6 +20,7 @@ class CityView(ViewSet):
         return Response(serialized.data, status=status.HTTP_200_OK)
 
     def list(self, request):
+        """ Get All Cities """
         # Step 1: Get all city data from the database
         cities = City.objects.all()
 
@@ -34,4 +36,3 @@ class CitySerializer(serializers.ModelSerializer):
     class Meta:
         model = City
         fields = ('id', 'name',)
-
